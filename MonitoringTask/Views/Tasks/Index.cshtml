@@ -1,0 +1,116 @@
+﻿@model MonitoringTask.Models.ViewModel.TaskViewModelObj
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Index", "Tasks", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Filter by Name:")
+        @Html.TextBox("filterName", Model.FilterName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Sort by:")
+        @Html.DropDownList("sortBy", new SelectList(
+            new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Name", Value = "name" },
+                new SelectListItem { Text = "Due Date", Value = "duedate" },
+                new SelectListItem { Text = "Priority", Value = "priority" },
+                new SelectListItem { Text = "PIC", Value = "pic" },
+                new SelectListItem { Text = "Status", Value = "status" },
+                // Add more sorting options as needed
+            }, "Value", "Text", Model.SortBy), "Select", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Apply</button>
+}
+
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].DateModified)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].Priority)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].DateNotif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].PIC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks[0].ModifiedBy)
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model.Tasks) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateModified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNotif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PIC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedBy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
