@@ -14,10 +14,10 @@
    
 2. Open the solution in Visual Studio.
 
-3. In the `web.config` file of the project, configure the email settings under the `<appSettings>` section. Replace the value with your email settings
+3. Build the solution to restore NuGet packages.
+	`Update-Package -reinstall` in Package Manager Console
+4. In the `web.config` file of the project, configure the email settings under the `<appSettings>` section. Replace the value with your email settings
 
-4. Open the Package Manager Console and run the following command to apply database migrations and create the LocalDB database:
-   `Update-Database`
    
 ## Usage
 - Press F5 or run the application to start the local development server.
